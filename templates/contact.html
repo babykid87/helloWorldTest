@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Contact</h1>
+    {% if form_submitted %}
+    <div class="col-md-6">
+         <h2>We have received your information</h2>
+    </div>
+    <div class="col-md-6">
+        <p>First Name: {{ request.form.get('first_name') }} Last Name: {{ request.form.get('last_name')}} --- Email Address: {{ request.form.get('email') }}</p>
+    </div>
+    <div class="mb-3">
+        <p>Your Message: {{ request.form.get('message')}}</p>
+    </div>
+    {% else %}
+    <form class="row g-3" action="{{ url_for('contact') }}" method="post">
+        <div class="mb-3">
+        <label for="first_name" class="form-label">First Name</label>
+        <input type="text" class="form-control" id="first_name" name="first_name">
+        </div>
+        <div class="mb-3">
+        <label for="last_name" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="last_name" name="last_name">
+         </div>
+        <div class="mb-3">
+        <label for="email" class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email">
+         </div>
+        <div class="mb-3">
+        <label for="message" class="form-label">Your Message for Us</label>
+        <textarea class="form-control" id="message" rows="5" name="message" placeholder="Enter your message"></textarea>
+         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endif %}
+
+
+
+</div>
+
+</body>
+</html>
